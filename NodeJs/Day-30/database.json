@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "username": "brijesh",
+            "password": "12345678",
+            "age": 20
+        },
+        {
+            "username": "brijesh1",
+            "password": "12345678",
+            "age": 20
+        },
+        {
+            "username": "brijesh2",
+            "password": "12345678",
+            "age": 20
+        },
+        {
+            "username": "b4",
+            "password": "12345678",
+            "age": 20
+        }
+    ]
+}

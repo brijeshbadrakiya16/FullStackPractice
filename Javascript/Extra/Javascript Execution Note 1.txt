@@ -1,0 +1,65 @@
+1. How does a javascript program get executed?
+ans => javascript has phases
+	1. parsing, in this js code first pasr into AST(abstract syntax tree). in here it will check syntax and generate AST. then
+	2. compilation, in this phase we have JIT that has Interpreter and compiler 
+		Interpreter execute code line by line and generates Byte code
+		compiler compile interpreted code and optimize then send back to Interpreter for better execution. then
+	3. it goes to execution state.
+
+Execution of JS:-
+-> first GEC(Globle Execution Context) push into call stack. then it will run code line by line and if there is any callback function 
+js register callback to callback Queue and between callback Queue and callStack there is event loop which keep checking that callback stack
+is empty or not. callStack is empty then it will push callback from CallbackQueue to callStack and Execute.
+
+-> If there is some WebAPI function call for Example fetch() then this goes into microtask queue and it has higher priority then callback 
+queue so microtask task first push into the callstack then callback queue.
+
+
+2. What is an event loop?
+ans => event loop continuously checking the callstack to be empty or wait for callstack program to execute and push callback queue task 
+into callback for execution.
+
+-> If there is task in microtask queue then it get higher priority to execute first.
+
+
+3. Find out why event loop and task queues are needed?
+ans => event loop needed for handle non-blocking operations efficiently and managing the execution of code.
+
+-> task queue needed for handle high priority task like WebAPI's call so, that our code run fine without disturbing user experience.
+
+4. What is callback queue/ micro_task queue?
+ans => callback queue is used for tasks that can be executed at a later time(after current callstack execute), such as click events and timers.
+
+-> microtask queue is used for tasks that need to be executed as soon as possible, such as promise resolutions and mutations to the DOM.
+
+
+5. Which task goes into which queues (callback queue/ micro_task queue)?
+ans => below some example of task that are executes in queue:-
+Callback queue:
+- Click events
+- Timer events
+- I/O events
+Microtask queue:
+- Promise resolutions
+- Mutations to the DOM
+- MutationObserver callbacks
+
+6. Is it possible that tasks from the callback queue/ microtask queue never gets executed? state the reason?
+ans => 
+-> If you have a long-running task in the callback queue, and the browser is overloaded with other tasks, the long-running task may be dropped.
+-> If you cancel a promise, the callback function associated with the promise will not be executed.
+-> If you have a task in the microtask queue that is dependent on a task in the callback queue, and the callback queue task is cancelled, 
+   the microtask queue task will not be executed.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Que. why microtask queue has higher priority over callback queue?
+ans => The microtask queue has higher priority over the callback queue because it is designed to handle tasks that need to be executed 
+immediately. Microtasks are typically used for tasks that are related to the current event loop iteration, such as updating the DOM 
+or handling user input. Callback tasks, on the other hand, are typically used for tasks that can be deferred until later, such as making 
+an HTTP request or reading a file.
+
+Que. who decide which task goes to which queue?
+ans => The "JavaScript runtime" decides which task goes to which queue based on the type of task. Tasks that are considered to be 
+more urgent or important are added to the microtask queue. Tasks that are considered to be less urgent or important are added to 
+the callback queue.

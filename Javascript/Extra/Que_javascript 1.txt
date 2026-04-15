@@ -1,0 +1,33 @@
+Que. which function is in javascript and not in google v8 engine.
+ans => eval() & with()
+
+• console.log() & setTimeout() & fetch() API is not in javascript it is attach with "window" object from browser and we can access it 
+in javascript.
+
+•  You Don't Know JavaScript
+=> https://www.youtube.com/watch?v=QK-RxEEVAWs
+
+•  Looking Under the Hood of JavaScript
+=> https://www.youtube.com/watch?v=boD0ReK62FI
+
+• The Power of generators.
+=> https://observablehq.com/@anjana/the-power-of-js-generators
+
+• this keyword.
+=> https://gist.github.com/anuj-kr-jha/8cfca90f373f8aaff635945551011b7b
+
+• Arguments object in function
+/*
+// Arguments
+function foo() {
+  const a = arguments[0] !== void 0 ? arguments[0] : 2;
+  console.log(arguments);
+  console.log(a);
+  console.log("-------------");
+  console.log(void 0 === undefined); // true
+}
+foo();
+foo(10);
+
+// console.log(arguments);
+*/
