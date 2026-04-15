@@ -1,7 +1,7 @@
 // Day-32
 
 // Watched S2 E11 as learned how to handle cookies with the help of jwt, implemented a auth middle ware that restricts user from accessing apis rather then /signup or /login. and also learned how to create and  use custom middlewares. 
-// Watched S2 E13 as learned how to use routes to handle api routes and also handle multiple conditions on connection request api to handle connection between two user. Also learned about indexing in mongodb as how it helps on response back when db have large amount of data.
+// Watched S2 E13 as learned how to use routes to handle api routes and also handle multiple conditions on connection request api to handle connection between two user. Also learned about indexing in mongodb as how it helps on response back when db have large amount of data. Learned about compound indexs.
 // Read about Multer,response-time,serve-favicon,serve-index,server-static,express-session,connect-timeout,vhost, as learned in detail about multer,timeout and express-session middlewares.
 
 // _______________________________________________________
