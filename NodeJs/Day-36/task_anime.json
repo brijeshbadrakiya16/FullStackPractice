@@ -1,0 +1,240 @@
+[{
+  "_id": {
+    "$oid": "69e761a31ea1d3263ac1dace"
+  },
+  "title": "Attack on Titan",
+  "episodes": 76,
+  "lastWatchedDate": {
+    "$date": "2026-04-21T11:39:47.980Z"
+  },
+  "categories": [
+    "Action",
+    "Fantasy",
+    "Drama",
+    "Thriller",
+    "Suspense"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dacf"
+  },
+  "title": "Fullmetal Alchemist: Brotherhood",
+  "rating": 9.2,
+  "episodes": 65,
+  "categories": [
+    "Action",
+    "Adventure",
+    "Fantasy"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad0"
+  },
+  "title": "Death Note",
+  "rating": 8.7,
+  "episodes": 38,
+  "categories": [
+    "Mystery",
+    "Supernatural"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad1"
+  },
+  "title": "Naruto",
+  "rating": 8.3,
+  "episodes": 221,
+  "categories": [
+    "Action",
+    "Adventure",
+    "Comedy"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad2"
+  },
+  "title": "Naruto: Shippuden",
+  "rating": 8.6,
+  "episodes": 501,
+  "categories": [
+    "Action",
+    "Adventure",
+    "Drama"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad3"
+  },
+  "title": "One Piece",
+  "rating": 10.68,
+  "episodes": 1001,
+  "categories": [
+    "Action",
+    "Adventure"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad4"
+  },
+  "title": "Dragon Ball Z",
+  "rating": 8.5,
+  "episodes": 292,
+  "categories": [
+    "Action",
+    "Adventure",
+    "Martial Arts"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad5"
+  },
+  "title": "Demon Slayer: Kimetsu no Yaiba",
+  "rating": 8.7,
+  "episodes": 27,
+  "categories": [
+    "Action",
+    "Supernatural",
+    "Drama"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad6"
+  },
+  "title": "Jujutsu Kaisen",
+  "rating": 8.6,
+  "episodes": 25,
+  "categories": [
+    "Action",
+    "Supernatural",
+    "Dark Fantasy"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad7"
+  },
+  "title": "My Hero Academia",
+  "rating": 8.4,
+  "episodes": 139,
+  "categories": [
+    "Action",
+    "Comedy",
+    "Superhero"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad8"
+  },
+  "title": "Tokyo Ghoul",
+  "rating": 8,
+  "episodes": 25,
+  "categories": [
+    "Action",
+    "Horror",
+    "Supernatural"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dad9"
+  },
+  "title": "Bleach",
+  "rating": 8.2,
+  "episodes": 367,
+  "categories": [
+    "Action",
+    "Supernatural",
+    "Adventure"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dada"
+  },
+  "title": "Hunter x Hunter (2011)",
+  "rating": 9,
+  "episodes": 149,
+  "categories": [
+    "Action",
+    "Adventure",
+    "Fantasy"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dadb"
+  },
+  "title": "Code Geass: Lelouch of the Rebellion",
+  "rating": 8.7,
+  "episodes": 51,
+  "categories": [
+    "Action",
+    "Mecha",
+    "Drama"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dadc"
+  },
+  "title": "Sword Art Online",
+  "rating": 8,
+  "episodes": 97,
+  "categories": [
+    "Action",
+    "Adventure",
+    "Sci-Fi"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dadd"
+  },
+  "title": "Steins;Gate",
+  "rating": 9.1,
+  "episodes": 25,
+  "categories": [
+    "Sci-Fi",
+    "Thriller",
+    "Drama"
+  ],
+  "status": "ongoing"
+},
+{
+  "_id": {
+    "$oid": "69e761be1ea1d3263ac1dade"
+  },
+  "title": "Neon Genesis Evangelion",
+  "rating": 8.5,
+  "episodes": 27,
+  "categories": [
+    "Mecha",
+    "Psychological",
+    "Drama"
+  ],
+  "status": "ongoing"
+}]
