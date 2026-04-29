@@ -45,8 +45,8 @@
 // Inspector
 
 
-// const http = require("http");
-// console.log(http.STATUS_CODES);
+const http = require("http");
+console.log(http.STATUS_CODES);
 
 
 // below code is for just the encryption and decruption data like we want to send some data to other and don't want to any middle man to understand it then we can do this.
