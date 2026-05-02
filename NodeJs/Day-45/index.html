@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="display: flex; align-items: center; justify-content: right; gap:10px;">
+        <text id="loginId"></text>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <div style="margin-top: 140px;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 7px;">
+            <button id="cell0" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+            <button id="cell1" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+            <button id="cell2" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 7px;">
+            <button id="cell3" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+            <button id="cell4" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+            <button id="cell5" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 7px;">
+            <button id="cell6" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+            <button id="cell7" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+            <button id="cell8" style="height: 70px; width: 70px; border-radius: 3px;"
+                onclick="updateTable(id)"></button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        // socket.emit("ping");
+        const logout = () => {
+            localStorage.removeItem('loginId');
+        }
+
+        let updateTable;
+
+        let id = localStorage.getItem("loginId") ?? false;
+        if (!id || id === null || id === 'null') {
+            id = prompt("Enter login id: ");
+            // Object.is(id,null) || id === undefined || id==0 // future implement
+            localStorage.setItem("loginId", id);
+
+        }
+        document.getElementById("loginId").textContent = id;
+        if (id !== null && id !== 'null') {
+            const socket = io({
+                auth: {
+                    id: id
+                }
+            });
+
+            socket.on("someInvalid", (msg) => {
+                alert(msg);
+            })
+
+            socket.on("updateTable", (arr) => {
+                for (let i = 0; i < 9; i++) {
+                    document.getElementById("cell" + i).textContent = arr[i];
+                }
+            })
+
+            updateTable = (id) => {
+                socket.emit("gameplay", { grid: id.at(-1) });
+            }
+        }
+
+    </script>
+</body>
+
+</html>
