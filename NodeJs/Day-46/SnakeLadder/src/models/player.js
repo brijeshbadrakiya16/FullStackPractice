@@ -16,8 +16,8 @@ const playerSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 4,
-        maxlength: 16
+        minlength: 8,
+        maxlength: 100
     },
     age: {
         type: Number,
@@ -34,11 +34,6 @@ const playerSchema = new mongoose.Schema({
     coins: {
         type: Number,
         default: 500,
-        validate(value) {
-            if (!validator.isNumeric(value)) {
-                throw new Error("Invalid data : " + value);
-            }
-        }
     },
     profileImg: {
         type: String,

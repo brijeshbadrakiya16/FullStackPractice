@@ -1,9 +1,7 @@
 const { createClient } = require("redis");
 
-let client;
-
 const connectRedis = async () => {
-    client = createClient({
+    const client = createClient({
         username: 'default',
         password: 'CXw2gPLTj2LbvhmA4FGazo4yphqLk4Km',
         socket: {
@@ -11,8 +9,11 @@ const connectRedis = async () => {
             port: 11899
         }
     });
+
     client.on('error', err => console.log('Redis Client Error', err));
     await client.connect();
+    return client;
 }
 
-module.exports({ connectRedis, client });
+
+module.exports = { connectRedis };
