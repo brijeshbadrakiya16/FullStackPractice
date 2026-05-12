@@ -54,6 +54,7 @@ io.on("connection", (socket) => {
                 if ((!io.sockets.adapter.sids.has(x[0])) && (x[1].has(socket.id))) {
                     io.to(x[0]).emit("getMessage", obj.message);
                     messageSent = true;
+                    break;
                 }
             }
         }

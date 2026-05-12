@@ -18,14 +18,14 @@ const { createServer } = require("node:http");
 const { join } = require("node:path");
 const { Server } = require("socket.io");
 const crypto = require("crypto");
-const { Socket } = require("node:dgram");
+// const { Socket } = require("node:dgram");
 const { hostname } = require("node:os");
 
 const app = expr();
 const server = createServer(app);
 const io = new Server(server);
 
-const roomAndPlayer
+// const roomAndPlayer
 
 app.get("/", (req, res) => {
     res.sendFile(join(__dirname, 'index.html'));
@@ -131,7 +131,7 @@ io.on("connection", (socket) => {
         setTimeout(() => {
             io.sockets.adapter.rooms.delete(roomId);
             console.log("After closing room:", io.sockets.adapter.rooms);
-        }, 10000);
+        }, 600000);
     }
     // }
 

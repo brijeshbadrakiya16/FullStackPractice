@@ -180,7 +180,7 @@ const MersenneTwister = require('mersenne-twister');
 //         // ChaCha20 requires a 32-byte key and a 12-byte nonce
 //         this.key = crypto.randomBytes(32);
 //         this.nonce = crypto.randomBytes(12);
-//         this.counter = 0;
+//         // this.counter = 0;
 //     }
 
 //     // Generates a 32-bit unsigned integer (0 to 4,294,967,295)
@@ -208,32 +208,78 @@ const MersenneTwister = require('mersenne-twister');
 //     console.log(Math.floor(new ChaChaRNG().random() * 6 + 1));
 // }, 1000);
 
-const arr = [1, 2, 3, 4, 5, 6];
 
-const time = crypto.randomInt(40, 91);
-const id = setInterval(() => {
-    const num = crypto.randomInt(10, 100);
-    let r = (num % 10) % 6;
-    let l = Math.floor(num / 10) % 6;
-    let temp = arr[r];
-    arr[r] = arr[l];
-    arr[l] = temp;
-    // let flag = true;
-    // for (let i = 0; i < 5; i++) {
-    //     if (arr[i] != arr[i + 1]) {
-    //         flag = false;
-    //         break
-    //     }
-    // }
-    // if (flag) {
-    //     clearInterval(id);
-    //     console.log(arr);
-    //     console.log("From condition")
-    // }
-    // console.log(arr);
-}, 100);
+// ....................................
 
-setTimeout(() => {
-    clearInterval(id);
-    console.log(arr);
-}, time * 100);
+// const crypto = require("crypto");
+class ChaChaRNG {
+    constructor() {
+        // Plain chacha20 requires a 32-byte key
+        this.key = crypto.randomBytes(32);
+
+        // IMPORTANT: Plain chacha20 requires exactly 16 bytes for the IV
+        // (4 bytes counter + 12 bytes nonce)
+        this.iv = crypto.randomBytes(16);
+    }
+
+    randomInt() {
+        // Create the cipher using the 16-byte IV
+        const cipher = crypto.createCipheriv('chacha20', this.key, this.iv);
+
+        // We encrypt 4 bytes of zeros to get 4 bytes of random stream
+        const input = Buffer.alloc(4);
+        const output = cipher.update(input);
+
+        // We update the IV for the next call to ensure the stream moves forward
+        // Otherwise, you'll get the same "random" number every time!
+        this.iv = crypto.randomBytes(16);
+
+        return output.readUInt32LE();
+    }
+
+    random() {
+        return this.randomInt() / 0xFFFFFFFF;
+    }
+}
+
+// 1. Initialize the generator ONCE
+const safeRng = new ChaChaRNG();
+
+// 2. Use that single instance to pull numbers
+setInterval(() => {
+    const diceRoll = Math.floor(safeRng.random() * 6 + 1);
+    console.log("Dice Roll:", diceRoll);
+}, 1000);
+
+// _______________________________________________________
+
+
+// const arr = [1, 2, 3, 4, 5, 6];
+
+// const time = crypto.randomInt(40, 91);
+// const id = setInterval(() => {
+//     const num = crypto.randomInt(10, 100);
+//     let r = (num % 10) % 6;
+//     let l = Math.floor(num / 10) % 6;
+//     let temp = arr[r];
+//     arr[r] = arr[l];
+//     arr[l] = temp;
+//     // let flag = true;
+//     // for (let i = 0; i < 5; i++) {
+//     //     if (arr[i] != arr[i + 1]) {
+//     //         flag = false;
+//     //         break
+//     //     }
+//     // }
+//     // if (flag) {
+//     //     clearInterval(id);
+//     //     console.log(arr);
+//     //     console.log("From condition")
+//     // }
+//     // console.log(arr);
+// }, 100);
+
+// setTimeout(() => {
+//     clearInterval(id);
+//     console.log(arr);
+// }, time * 100);

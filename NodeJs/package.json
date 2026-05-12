@@ -6,6 +6,7 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "ioredis": "^5.10.1",
+    "mersenne-twister": "^1.1.0",
     "mongodb": "^7.1.1",
     "morgan": "^1.10.1",
     "multer": "^2.1.1",

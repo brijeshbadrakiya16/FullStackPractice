@@ -67,12 +67,32 @@
 
             socket.on("someInvalid", (msg) => {
                 alert(msg);
-            })
+            });
 
             socket.on("updateTable", (arr) => {
                 for (let i = 0; i < 9; i++) {
                     document.getElementById("cell" + i).textContent = arr[i];
                 }
+            });
+
+            socket.on("gameEnd", (message, indexes) => {
+                for (let i of indexes) {
+                    document.getElementById("cell" + i).style.backgroundColor = "cyan";
+                }
+
+                alert(message);
+
+                setTimeout(() => {
+                    const result = confirm("Do you want to Rejoin to another Game ?");
+                    if (result) {
+                        socket.emit("rejoin");
+                        for (let i = 0; i < 9; i++) {
+                            document.getElementById("cell" + i).textContent = "";
+                            document.getElementById('cell'+i).style.backgroundColor="";
+                        }
+                        window.location.reload();
+                    }
+                }, 7000);
             })
 
             updateTable = (id) => {
