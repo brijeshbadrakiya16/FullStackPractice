@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speedometer</title>
+</head>
+<body>
+  <h2>Current Speed: <span id="speed">0</span> km/h</h2>
+
+  <script>
+    function showSpeed(position) {
+      let speedElement = document.getElementById("speed");
+      let speed = position.coords.speed; // in m/s
+
+      if (speed === null || speed === undefined) {
+        speedElement.textContent = "0";
+      } else {
+        // Convert m/s → km/h
+        let kmh = (speed * 3.6).toFixed(2);
+        speedElement.textContent = kmh;
+      }
+    }
+
+    function errorHandler(err) {
+      console.warn("ERROR(" + err.code + "): " + err.message);
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(showSpeed, errorHandler, {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 5000
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  </script>
+</body>
+</html>
