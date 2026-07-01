@@ -401,5 +401,5 @@ app.get("/", (req, res) => {
 });
 
 server.listen("2026", "0.0.0.0", () => {
-    console.log(`Server is listening on \n\t http://192.168.20.117:2026`, server.address());
+    console.log(`Server is listening on \n\t http://192.168.20.95:2026`, server.address());
 })

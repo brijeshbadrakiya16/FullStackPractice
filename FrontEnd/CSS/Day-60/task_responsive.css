@@ -1,0 +1,533 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* _____________________________________ */
+
+.header{
+    padding: 5px 20% 5px 20%;
+    height: auto;
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10%;
+}
+
+.navLink{
+    font-family: sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* _____________________________________ */
+
+.section1{
+    max-width: 100%;
+    height: max-content;
+    overflow: hidden;
+    display: flex;
+    background-image: url(../banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    /* position: absolute;
+    top: 38%;
+    left:20%; */
+    padding-top: 16%;
+    padding-left: 20%;
+    padding-bottom: 18%;
+}
+
+.bannerText{
+    width: 42%;
+    word-spacing: 3px;
+    font-weight: 400;
+    font-size:28px;
+    text-wrap: auto;
+    text-align: left;
+    text-transform: uppercase;
+    color: white;
+    font-family: sans-serif;
+    margin-bottom: 1%;
+}
+
+.bannerButton{
+    width: fit-content;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid white;
+    font-family: sans-serif;
+    font-size: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+
+/* _____________________________________ */
+
+.section2{
+    padding: 5% 20% 5% 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section2Heading{
+    color: rgb(240,61, 70);
+    text-transform: uppercase;
+    font-size: 26px;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section2Paragraph{
+    font-size: 12px;
+    text-align: justify;
+    font-weight: 100;
+    color: #777;
+    margin-bottom: 10px ;
+}
+
+.button{
+    width: fit-content;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid rgb(240,61, 70);
+    font-family: sans-serif;
+    font-size: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(240,61, 70);
+    margin-bottom: 10px ;
+}
+
+/* _____________________________________ */
+
+.section3{
+    padding: 5% 20% 5% 20%;
+    display: flex;
+    background-color: #eee;
+}
+
+.section3Card1{
+    max-width: fit-content;
+}
+
+.section3Card2{
+    max-width: fit-content;
+}
+
+.section3Card1Image{
+    margin-bottom: 10px;
+}
+
+.section3Card2Image{
+    margin-bottom: 10px;
+}
+
+.section3Card1Text{
+    color: rgb(240,61, 70);
+    text-transform: uppercase;
+    font-size: 22px;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section3Card2Text{
+    color: rgb(240,61, 70);
+    text-transform: uppercase;
+    font-size: 22px;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section3Card1Paragraph{
+    max-width: 83%;
+    font-size: 12px;
+    text-align: justify;
+    font-weight: 100;
+    color: #777;
+    margin-bottom: 20px ;
+}
+
+.section3Card2Paragraph{
+    max-width: 83%;
+    font-size: 12px;
+    text-align: justify;
+    font-weight: 100;
+    color: #777;
+    margin-bottom: 20px ;
+}
+
+/* _____________________________________ */
+
+.section4{
+    padding: 5% 20% 5% 20%;
+    display: flex;
+}
+
+.section4Card1Text{
+    color: rgb(240,61, 70);
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.section4Card2Text{
+    color: rgb(240,61, 70);
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section4Card3Text{
+    color: rgb(240,61, 70);
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section4Card1Paragraph{
+    max-width: 73%;
+    font-size: 12px;
+    word-spacing: 4px;
+    text-align: justify;
+    font-weight: 100;
+    color: #777;
+    margin-bottom: 20px ;
+}
+
+.section4Card2Paragraph{
+    max-width: 73%;
+    font-size: 12px;
+    word-spacing: 4px;
+    text-align: justify;
+    font-weight: 100;
+    color: #777;
+    margin-bottom: 20px ;
+}
+
+.section4Card3Paragraph{
+    max-width: 73%;
+    font-size: 12px;
+    word-spacing: 4px;
+    text-align: justify;
+    font-weight: 100;
+    color: #777;
+    margin-bottom: 20px ;
+}
+
+/* _____________________________________ */
+
+.footer{
+    padding: 5% 20% 5% 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(240,61, 70);
+    color: white;
+}
+.footerHead{
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+.formName-Email{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 40px;
+}
+.formMessage{
+    width: 100%;
+}
+.name{
+    width: 50%;
+}
+.email{
+    width: 50%;
+}
+label {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-size: small;
+}
+.inputName{
+    margin-top: 10px;
+    height: 25px;
+    background-color: rgb(240,61, 70);
+    color: white;
+    border: 1px solid white;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.inputEmail{
+    margin-top: 10px;
+    height: 25px;
+    background-color: rgb(240,61, 70);
+    color: white;
+    border: 1px solid white;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.inputMessage{
+    margin-top: 10px;
+    height: 150px;
+    background-color: rgb(240,61, 70);
+    color: white;
+    border: 1px solid white;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.inputButton{
+    width: fit-content;
+    padding: 10px 20px 10px 20px;
+    background-color: rgb(240,61, 70);
+    border: 1px solid white;
+    font-family: sans-serif;
+    font-size: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px ;
+}
+
+/* _____________________________________ */
+
+
+@media (max-width:1280px) {
+    .section1{
+        background-size: cover;
+    }
+    .bannerText{
+        width: 50%;
+        font-size: small;
+    }
+    .bannerButton{
+        font-size: 12px;
+        padding: 2px 4px 2px 4px;
+    }
+
+
+    .section3{
+        padding-top: 10%;
+        padding-bottom: 10%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .section3Card1{
+        margin-bottom: 40px;
+    }
+    .section3Card2{
+        margin-bottom: 40px;
+    }
+    .section3Card1Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section3Card2Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section3Card1Image{
+        width: 100%;
+        margin-bottom: 4%;
+    }
+    .section3Card2Image{
+        width: 100%;
+        margin-bottom: 4%;
+    }
+    .section3Card1Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+    .section3Card2Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+}
+
+@media (max-width:720px) {
+    .header{
+        padding: 5px 2% 5px 2%;
+        flex-direction: column;
+    }
+    .nav{
+        justify-content: center;
+    }
+    /* _/---------\_ */
+    .section1{
+        background-size: cover;
+    }
+    .bannerText{
+        width: 50%;
+        font-size: small;
+    }
+    .bannerButton{
+        font-size: 12px;
+        padding: 2px 4px 2px 4px;
+    }
+    
+    /* _/---------\_ */
+    .section2{
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+    .section2Heading{
+        font-size: 18px;
+        margin-bottom: 4%;
+        text-align: center;
+    }
+    .section2Paragraph{
+        font-size: 10px;
+        margin-bottom: 4%;
+    }
+    
+    /* _/---------\_ */
+    .button{
+        align-self: center;
+        justify-self: center;
+        font-size: small;
+        margin-bottom: 4%;
+    }
+    
+    /* _/---------\_ */
+    .section3{
+        padding-top: 10%;
+        padding-bottom: 10%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .section3Card1{
+        margin-bottom: 40px;
+    }
+    .section3Card2{
+        margin-bottom: 40px;
+    }
+    .section3Card1Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section3Card2Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section3Card1Image{
+        width: 100%;
+        margin-bottom: 4%;
+    }
+    .section3Card2Image{
+        width: 100%;
+        margin-bottom: 4%;
+    }
+    .section3Card1Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+    .section3Card2Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+    
+    /* _/---------\_ */
+    
+    .section4{
+        padding-top: 10%;
+        padding-bottom: 10%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .section4Card1{
+        margin-bottom: 40px;
+    }
+    .section4Card2{
+        margin-bottom: 40px;
+    }
+    .section4Card3{
+        margin-bottom: 40px;
+    }
+    .section4Card1Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section4Card2Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section4Card3Text{
+        font-size: 16px;
+        margin-bottom: 4%;
+    }
+    .section4Card1Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+    .section4Card2Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+    .section4Card3Paragraph{
+        max-width: 100%;
+        font-size: 10px;
+        margin-bottom: 8%;
+    }
+    
+    /* _/---------\_ */
+    
+    .footer{
+        padding-top: 10%;
+        padding-bottom: 10%;
+        flex-direction: column;
+    }
+    .formName-Email{
+        flex-direction: column;
+        gap: 0px;
+        width: 100%;
+    }
+    .name{
+        width: 100%;
+    }
+    .email{
+        width:100%;
+    }
+    label {
+        text-align: center;
+    }
+    .inputName{
+        width: 100%;
+    }
+    .inputEmail{
+        width: 100%;
+    }
+
+}

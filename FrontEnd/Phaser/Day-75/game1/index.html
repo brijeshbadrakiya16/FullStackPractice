@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Phaser Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
+</head>
+<body>
+
+<script>
+const config = {
+    type: Phaser.AUTO, 
+    width: 800,
+    height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: { 
+            gravity: { y: 1200 }, // Increased gravity a bit for snappier jumping
+            debug: false 
+        }
+    },
+    scene: { preload: preload, create: create, update: update }
+};
+
+const game = new Phaser.Game(config);
+
+// Keep track of our game score
+let score = 0;
+let scoreText;
+
+function preload() {
+    this.load.image('player_ship', 'assets/subject.png');
+    // We will use a built-in Phaser trick to generate a basic shape 
+    // so you don't have to download a second image file yet!
+}
+
+function create() {
+    // 1. Create the Player
+    this.player = this.physics.add.sprite(400, 300, 'player_ship');
+    this.player.setCollideWorldBounds(true);
+    
+    // 2. Create the Collectible Target (A little red circle)
+    // Instead of loading an image, we draw a 15px circle dynamically
+    const circleGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+    circleGraphics.fillStyle(0xff0000, 1);
+    circleGraphics.fillCircle(15, 15, 5);
+    circleGraphics.generateTexture('target_circle', 30, 30);
+
+    // Place the target at a random spot on the screen
+    this.target1 = this.physics.add.sprite(
+        Phaser.Math.Between(50, 750), 
+        Phaser.Math.Between(50, 550), 
+        'target_circle'
+    );
+    // Targets shouldn't fall out of the sky, so turn off gravity for it!
+    this.target1.body.setAllowGravity(false);
+    
+    this.target2 = this.physics.add.sprite(
+        Phaser.Math.Between(50, 750), 
+        Phaser.Math.Between(50, 550), 
+        'target_circle'
+    );
+    // Targets shouldn't fall out of the sky, so turn off gravity for it!
+    this.target2.body.setAllowGravity(false);
+    
+    this.target3 = this.physics.add.sprite(
+        Phaser.Math.Between(50, 750), 
+        Phaser.Math.Between(50, 550), 
+        'target_circle'
+    );
+    // Targets shouldn't fall out of the sky, so turn off gravity for it!
+    this.target3.body.setAllowGravity(false);
+
+    // 3. UI Text
+    scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
+
+    // 4. Keyboard Controls (Adding Spacebar for jumping)
+    this.cursors = this.input.keyboard.createCursorKeys();
+    
+    // 5. Collision Detection! 
+    // This tells Phaser: "Every frame, check if player overlaps with target. If they do, run collectTarget()"
+    this.physics.add.overlap(this.player, this.target1, collectTarget, null, this);
+    this.physics.add.overlap(this.player, this.target2, collectTarget, null, this);
+    this.physics.add.overlap(this.player, this.target3, collectTarget, null, this);
+}
+
+function update() {
+    // Left/Right Movement
+    if (this.cursors.left.isDown) {
+        this.player.setVelocityX(-400);
+    } else if (this.cursors.right.isDown) {
+        this.player.setVelocityX(400);
+    } else {
+        this.player.setVelocityX(0);
+    }
+
+    // JUMPING / THRUSTING
+    // We check if Spacebar (or Up Arrow) is pressed, AND if the player is touching the floor.
+    // This prevents the player from infinitely jumping mid-air.
+    if ((this.cursors.space.isDown || this.cursors.up.isDown) && this.player.body.blocked.down) {
+        this.player.setVelocityY(-800); // Negative Y velocity moves UPWARDS in game dev
+    }
+}
+
+// This function automatically gets triggered by our overlap check above
+function collectTarget(player, target) {
+    // Teleport the target to a brand new random location
+    target.setPosition(
+        Phaser.Math.Between(50, 750),
+        Phaser.Math.Between(50, 550)
+    );
+
+    // Increase score and update the display text
+    score += 1;
+    scoreText.setText('Score: ' + score);
+}
+</script>
+
+</body>
+</html>

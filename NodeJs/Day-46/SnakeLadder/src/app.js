@@ -31,7 +31,7 @@ app.use("/auth", authRouter);
 connectDB().then(() => {
     connectRedis().then(() => {
         server.listen(2000, "0.0.0.0", () => {
-            console.log("Server is listening on http://192.168.20.117:2000");
+            console.log("Server is listening on http://192.168.20.95:2000");
         })
     })
 })

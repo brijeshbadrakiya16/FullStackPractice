@@ -1,0 +1,144 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 0px 20px;
+}
+
+.logo {
+  width: 100px;
+}
+
+.nav-items{
+  font-size: 20px;
+} 
+
+.nav-items > ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-items > ul > li {
+  padding: 10px;
+  margin:10px;
+}
+
+.res-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.res-card{
+  margin:10px;
+  padding: 5px;
+  width: 250px;
+  height: 380px;
+  min-height: fit-content;
+  background-color:#f0f0f0;
+  border:1px solid white;
+}
+
+.shimmer-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.shimmer-cards{
+  margin:10px;
+  padding: 5px;
+  width: 250px;
+  height: 380px;
+  background-color:#aaa;
+  border:1px solid white;
+  animation: shimmer 1s alternate-reverse infinite;
+  animation-timing-function: ease;
+}
+
+@keyframes shimmer {
+  from {
+    background-color: #eee;
+  }
+  to {
+    background-color: #aaa;
+  }
+}
+
+.res-card:hover {
+  border:1px solid black;
+  cursor: pointer;
+}
+
+.search {
+  padding: 10px;
+}
+
+.res-logo {
+  display: block;
+  align-self: center;
+  justify-self: center;
+  height: 35%;
+  max-width: 100%;
+}
+
+.filter-btn {
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.filter-btn2 {
+  background-color: black;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.auth-btn {
+  background-color: azure;
+  color: black;
+  font-size: 18px;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.filter{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.searchField {
+  min-width: 20%;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.search-btn{
+  background-color: azure;
+  color: black;
+  margin: 0px 10px 0px 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-not-matched {
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: justify;
+}
+
+@media (device-width<=1080px){
+  .header{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-items > ul {
+    padding: 0px;
+  }
+}
