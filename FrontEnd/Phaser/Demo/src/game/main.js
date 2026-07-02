@@ -1,6 +1,7 @@
 import { Game as MainGame } from './scenes/Game';
-import { GameOver } from './scenes/GameOver';
+import { GameFinish } from './scenes/GameFinish';
 import { AUTO, Game, Scale } from 'phaser';
+import StartScene from './scenes/StartScene';
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -15,9 +16,13 @@ const config = {
         autoCenter: Scale.CENTER_BOTH
     },
     scene: [
+        StartScene,
         MainGame,
-        GameOver
-    ]
+        GameFinish,
+    ],
+    dom: {
+        createContainer: true,
+    },
 };
 
 const StartGame = (parent) => {

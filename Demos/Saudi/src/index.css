@@ -1,0 +1,462 @@
+/* Import modern fonts if they weren't in index.html, but we have them in index.html. Custom styling. */
+
+:root {
+  /* 60-30-10 Color Scheme */
+  --primary-mint: #c0f0df;      /* 60% Dominant (Main theme, panel backdrops, soft gradients) */
+  --white: #ffffff;             /* 30% Secondary (Card bodies, quiz areas, input fields, clean spacing) */
+  --accent-neon: #3edea5;       /* 10% Accent (Call-to-actions, active links, progress badges, highlights) */
+  
+  /* Additional premium contrast colors */
+  --deep-forest: #0d241c;       /* Luxury Saudi branding background */
+  --dark-green: #173b2e;
+  --text-primary: #1e293b;      /* Slate-800 for high readability */
+  --text-muted: #64748b;        /* Slate-500 */
+  --light-gray: #f8fafc;
+  --border-light: #e2e8f0;
+  
+  --font-en: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-ar: 'Cairo', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --shadow-sm: 0 2px 4px rgba(13, 36, 28, 0.05);
+  --shadow-md: 0 8px 16px rgba(13, 36, 28, 0.08);
+  --shadow-lg: 0 20px 25px -5px rgba(13, 36, 28, 0.15);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--deep-forest);
+  color: var(--text-primary);
+  font-family: var(--font-en);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent global desktop scroll */
+  
+  /* Copy Protection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* RTL Support - Cairo Font for Arabic */
+[lang="ar"] {
+  font-family: var(--font-ar);
+}
+
+/* Ensure that for Arabic language, text flows right-to-left but remains left-aligned or center-aligned */
+[lang="ar"] .ar-text-rtl-left {
+  direction: rtl;
+  text-align: left !important;
+}
+
+[lang="ar"] .ar-text-rtl-center {
+  direction: rtl;
+  text-align: center !important;
+}
+
+
+/* Desktop Preview Backdrop and Wrapper */
+.desktop-backdrop {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, #1a493a 0%, var(--deep-forest) 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Abstract Saudi Games Inspired background shapes for desktop */
+.desktop-backdrop::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, rgba(62, 222, 165, 0.15) 0%, transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.desktop-backdrop::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(192, 240, 223, 0.1) 0%, transparent 60%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.desktop-header-info {
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 24px;
+  z-index: 2;
+}
+
+.desktop-header-info h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--white) 30%, var(--accent-neon) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.desktop-header-info p {
+  font-size: 14px;
+  color: var(--primary-mint);
+  opacity: 0.8;
+}
+
+/* Mobile Simulator Container (Centered Frame on Desktop) */
+.mobile-device-frame {
+  width: 395px;
+  height: 820px;
+  background: #000;
+  border-radius: 48px;
+  padding: 11px;
+  box-shadow: var(--shadow-lg), 0 0 0 12px #22252a, 0 20px 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 5;
+  transition: var(--transition);
+}
+
+/* Status Bar Notch */
+.device-notch {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 28px;
+  background: #000;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.device-notch::before {
+  content: '';
+  width: 45px;
+  height: 4px;
+  border-radius: 2px;
+  background: #222;
+  margin-bottom: 4px;
+}
+
+/* Device screen area */
+.app-screen-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--light-gray);
+  border-radius: 38px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Phone Simulator Status Bar details */
+.device-status-bar {
+  height: 40px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--deep-forest);
+  z-index: 90;
+  background: transparent;
+}
+
+.device-status-bar.dark-text {
+  color: var(--white);
+}
+
+.status-right-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Mobile Fullscreen (Overrides on Small Screens) */
+@media (max-width: 480px) {
+  body {
+    background-color: var(--light-gray);
+    overflow: auto;
+  }
+  
+  .desktop-backdrop {
+    background: none;
+    position: static;
+  }
+  
+  .desktop-header-info {
+    display: none;
+  }
+  
+  .mobile-device-frame {
+    width: 100vw;
+    height: 100svh;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  
+  .app-screen-container {
+    border-radius: 0;
+  }
+  
+  .device-notch {
+    display: none;
+  }
+  
+  .device-status-bar {
+    height: env(safe-area-inset-top, 24px);
+    padding-top: 4px;
+    background-color: var(--light-gray);
+    justify-content: flex-end;
+  }
+  .simulator-only {
+    display: none !important;
+  }
+}
+
+/* Navigation bar simulated home indicator */
+.home-indicator-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: var(--deep-forest);
+  opacity: 0.3;
+  z-index: 100;
+}
+
+@media (max-width: 480px) {
+  .home-indicator-bar {
+    display: none;
+  }
+}
+
+/* Copy Protection Overlays */
+.confidential-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0.04;
+  overflow: hidden;
+  font-weight: 700;
+  font-size: 14px;
+  transform: rotate(-30deg) scale(1.2);
+  white-space: nowrap;
+}
+
+/* Protection Screen Blur */
+.security-blur-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000000 !important; /* Pure solid black mask to prevent screenshots */
+  z-index: 99999 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 32px;
+  color: var(--white);
+  transition: opacity 0.3s ease;
+}
+
+.security-blur-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Print Protection CSS styling */
+@media print {
+  body, #root, .desktop-backdrop, .mobile-device-frame, .app-screen-container {
+    display: none !important;
+  }
+  html::after {
+    content: "WARNING: Unauthorized printing. Content blocked.";
+    font-family: sans-serif;
+    font-size: 24px;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+}
+
+/* Custom Alert/Notification */
+.security-toast {
+  position: absolute;
+  bottom: 80px;
+  left: 20px;
+  right: 20px;
+  background: rgba(13, 36, 28, 0.95);
+  border: 1px solid var(--accent-neon);
+  border-radius: 16px;
+  padding: 14px 18px;
+  color: var(--white);
+  font-size: 13px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(150px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.security-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Glassmorphism style cards */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+}
+
+.glass-panel-dark {
+  background: rgba(23, 59, 46, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(62, 222, 165, 0.2);
+  border-radius: 24px;
+  color: var(--white);
+}
+
+/* Custom Scrollbar for inner content areas */
+.custom-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-mint) transparent;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--primary-mint);
+  border-radius: 10px;
+}
+
+/* Saudi Games inspired patterns */
+.saudi-pattern-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.saudi-pattern-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: radial-gradient(circle at 1px 1px, var(--deep-forest) 1px, transparent 0);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+.saudi-pattern-bg-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: radial-gradient(circle at 1px 1px, var(--accent-neon) 1px, transparent 0);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+/* Ripple button effect */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-ripple:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+/* Pulse animation */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(62, 222, 165, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(62, 222, 165, 0);
+  }
+}
+
+.pulse-neon {
+  animation: neon-pulse 2s infinite;
+}
+
+/* Shake animation for locked items */
+@keyframes lock-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.shake-lock {
+  animation: lock-shake 0.3s ease 2;
+}
+
+/* Glide animation for startpage logo */
+@keyframes logo-glide {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.logo-glide {
+  animation: logo-glide 3s ease-in-out infinite;
+}

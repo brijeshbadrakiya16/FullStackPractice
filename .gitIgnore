@@ -33,3 +33,16 @@ FrontEnd/Phaser/Demo/.env
 FrontEnd/Phaser/jumper/node_modules
 
 FrontEnd/Phaser/my-phaser-game/node_modules
+
+Demos/TestOs/backend/node_modules
+Demos/TestOs/backend/.env
+Demos/TestOs/backend/.env.example
+
+Demos/TestOs/frontend/dist
+Demos/TestOs/frontend/node_modules
+Demos/TestOs/frontend/.env
+Demos/TestOs/frontend/.env.example
+
+Demos/Saudi/dist
+Demos/Saudi/node_modules
+Demos/Saudi/prompt.js
