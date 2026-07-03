@@ -13,7 +13,7 @@ export const playOpponent = (scene) => {
             gameEndWithFold(scene, 'opponent');
             return;
         }
-        if ((num % 13 == 0 && num > 500) && scene.opponentMoney > scene.stack * 2) {
+        if ((num % 13 == 0 || num > 900) && scene.opponentMoney > scene.stack * 2) {
             scene.playingMessage.setVisible(true);
             scene.playingMessage.setText(`Opponent Showed $${scene.stack * 2}`);
             scene.stack *= 2;
@@ -62,7 +62,7 @@ export const gameEndWithFold = (scene, from) => {
             // scene.restart.setVisible(true);
             scene.time.delayedCall(4500, () => {
                 scene.scene.stop('game');
-                scene.scene.start('gameFinish', { win: "self", money: winMoney });
+                scene.scene.start('gameFinish', { win: "self", winMoney: winMoney });
             }, null, scene);
         }, null, scene);
     } else {
@@ -77,7 +77,7 @@ export const gameEndWithFold = (scene, from) => {
             scene.canRestart = true;
             scene.time.delayedCall(4500, () => {
                 scene.scene.stop("game");
-                scene.scene.start('gameFinish', { win: "opponent", money: winMoney });
+                scene.scene.start('gameFinish', { win: "opponent", winMoney: winMoney });
             }, null, scene);
         }, null, scene);
     }
@@ -138,10 +138,11 @@ export const gameEndWithShow = (scene, from) => {
         scene.time.delayedCall(500, () => playFullAccumulatedAudio(scene), null, scene);
         scene.time.delayedCall(4500, () => {
             scene.scene.stop('game');
-            scene.scene.start('gameFinish', { win: scene.winData.win, money: winMoney });
+            scene.scene.start('gameFinish', { win: scene.winData.win, winMoney: winMoney });
         }, null, scene);
     } else {
         scene.playingMessage.setText(`Opponent won $${scene.pot} amount.\n By ${scene.winData.by}`);
+        const winMoney = scene.pot;
         scene.opponentMoney += scene.pot;
         scene.opponentMoneyText.setText(`$ ${scene.opponentMoney}`);
         scene.potText.setText("Pot : $0");
@@ -153,7 +154,7 @@ export const gameEndWithShow = (scene, from) => {
         scene.time.delayedCall(500, () => playFullAccumulatedAudio(scene), null, scene);
         scene.time.delayedCall(4500, () => {
             scene.scene.stop('game');
-            scene.scene.start('gameFinish', { win: scene.winData.win, money: winMoney });
+            scene.scene.start('gameFinish', { win: scene.winData.win, winMoney: winMoney });
         }, null, scene);
     }
 }
