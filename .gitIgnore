@@ -46,3 +46,6 @@ Demos/TestOs/frontend/.env.example
 Demos/Saudi/dist
 Demos/Saudi/node_modules
 Demos/Saudi/prompt.js
+
+Demos/ludo/node_modules
+Demos/ludo/.env
