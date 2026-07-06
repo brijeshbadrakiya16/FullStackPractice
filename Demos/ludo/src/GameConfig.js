@@ -1,14 +1,14 @@
-import { Game as MainGame } from './scenes/Game';
-import { GameFinish } from './scenes/GameFinish';
+import { Game as MainGame } from './scenes/Game/Game';
+import { GameFinish } from './scenes/GameFinish/GameFinish';
 import { AUTO, Game, Scale } from 'phaser';
-import StartScene from './scenes/StartScene';
+import StartScene from './scenes/StartGame/StartGame';
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
 const config = {
     type: AUTO,
-    width: 2048,
-    height: 1536,
+    width: 1080,
+    height: 1920,
     parent: 'game-container',
     backgroundColor: '#333',
     scale: {
@@ -16,8 +16,8 @@ const config = {
         autoCenter: Scale.CENTER_BOTH
     },
     scene: [
-        StartScene,
         MainGame,
+        StartScene,
         GameFinish,
     ],
     dom: {
