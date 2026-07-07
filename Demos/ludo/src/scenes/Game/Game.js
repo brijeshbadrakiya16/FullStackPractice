@@ -20,6 +20,12 @@ export class Game extends Scene {
         this.mode = null;
 
         this.settingData = null;
+
+        this.turn = 0;
+
+        this.pawnTest = null;
+
+        this.intervals = [];
     }
 
     init(data) {
@@ -40,19 +46,26 @@ export class Game extends Scene {
         this.load.image('yellowPawn', import.meta.env.VITE_BASE_PATH + "assets/images/pawns/yellow.png");
         this.load.image('bluePawn', import.meta.env.VITE_BASE_PATH + "assets/images/pawns/blue.png");
 
-        this.load.image('1',import.meta.env.VITE_BASE_PATH + "assets/images/1.png");
-        this.load.image('2',import.meta.env.VITE_BASE_PATH + "assets/images/2.png");
-        this.load.image('3',import.meta.env.VITE_BASE_PATH + "assets/images/3.png");
-        this.load.image('4',import.meta.env.VITE_BASE_PATH + "assets/images/4.png");
-        this.load.image('5',import.meta.env.VITE_BASE_PATH + "assets/images/5.png");
-        this.load.image('6',import.meta.env.VITE_BASE_PATH + "assets/images/6.png");
+        this.load.image('1', import.meta.env.VITE_BASE_PATH + "assets/images/dice/1.png");
+        this.load.image('2', import.meta.env.VITE_BASE_PATH + "assets/images/dice/2.png");
+        this.load.image('3', import.meta.env.VITE_BASE_PATH + "assets/images/dice/3.png");
+        this.load.image('4', import.meta.env.VITE_BASE_PATH + "assets/images/dice/4.png");
+        this.load.image('5', import.meta.env.VITE_BASE_PATH + "assets/images/dice/5.png");
+        this.load.image('6', import.meta.env.VITE_BASE_PATH + "assets/images/dice/6.png");
+
+        this.load.image('dice1', import.meta.env.VITE_BASE_PATH + "assets/images/dice/sprite-1-1.png");
+        this.load.image('dice2', import.meta.env.VITE_BASE_PATH + "assets/images/dice/sprite-1-2.png");
+        this.load.image('dice3', import.meta.env.VITE_BASE_PATH + "assets/images/dice/sprite-1-3.png");
+        this.load.image('dice4', import.meta.env.VITE_BASE_PATH + "assets/images/dice/sprite-2-1.png");
+        this.load.image('dice5', import.meta.env.VITE_BASE_PATH + "assets/images/dice/sprite-2-2.png");
+        this.load.image('dice6', import.meta.env.VITE_BASE_PATH + "assets/images/dice/sprite-2-3.png");
     }
 
     create() {
         this.board = this.add.image(540, 960, 'board');
         this.board.setOrigin(0.5, 0.5).setScale(1.09);
-        const pawn = new Pawn(this, 792, 1199, 'redPawn');
-        this.add.existing(pawn);
+        this.pawnTest = new Pawn(this, 540, 1392, 'redPawn');
+        this.add.existing(this.pawnTest);
 
 
         if (this.mode == "Four") {
@@ -74,6 +87,7 @@ export class Game extends Scene {
                         this.settingData[i].homePositions[k].x,
                         this.settingData[i].homePositions[k].y,
                         this.settingData[i].color + "Pawn",
+                        this.settingData[i].colorNumber,
                     )
                     playerData.pawns.push(pawn);
                 }
@@ -121,6 +135,122 @@ export class Game extends Scene {
         // }
         // call();
 
+        // this.levitate();
+    }
 
+    diceRolled(number) {
+        console.log(number);
+        if (number != 6 && this.eachPlayer[this.turn].availablePawns.length == 1) {
+            const pawn = this.eachPlayer[this.turn].availablePawns[0];
+            this.movePawn(pawn, pawn.pos, number, this.turn);
+        } else if (number == 6 && this.eachPlayer[this.turn].availablePawns.length >= 0) {
+            this.eachPlayer[this.turn].pawns.forEach((pawn) => {
+                // pawn.filters.external.addGlow(pawn.colorNumber);
+                this.levitate(pawn);
+                pawn.on('pointerdown', () => {
+                    this.intervals.forEach(x=>clearInterval);
+                    this.eachPlayer[(this.turn + 4) % 4].pawns.forEach((pawn) => {
+                        pawn.removeAllListeners('pointerdown');
+                    })
+                    // console.log(pawn,number,this.turn-1);
+                    this.movePawn(pawn, pawn.pos, number, (this.turn + 4) % 4);
+                    console.log("Reached ")
+                });
+                // pawn.on('pointerdown',(pawn,number) => this.movePawn(pawn,number,this.turn), this);
+            });
+        } else if (number != 6 && this.eachPlayer[this.turn].availablePawns.length > 0) {
+            this.eachPlayer[this.turn].availablePawns.forEach((pawn) => {
+                // pawn.filters.external.addGlow(pawn.colorNumber);
+                this.levitate(pawn);
+                pawn.on('pointerdown', () => {
+                    this.intervals.forEach(x=>clearInterval);
+                    this.eachPlayer[(this.turn + 4) % 4].pawns.forEach((pawn) => {
+                        pawn.removeAllListeners('pointerdown');
+                        // pawn.filters.external.clear();
+                    })
+                    // console.log(pawn,number,this.turn-1);
+                    this.movePawn(pawn, pawn.pos, number, (this.turn + 4) % 4);
+                    console.log("Reached ")
+                });
+                // pawn.on('pointerdown',(pawn,number) => this.movePawn(pawn,number,this.turn), this);
+            });
+        } else {
+            this.movePawn(null, null, 0, 0);
+        }
+    }
+
+    // movePawn(pawn, number, turn) {
+    //     this.eachPlayer[this.turn].pawns.forEach((pawn) => {
+    //         pawn.off('pointerdown');
+    //     })
+    //     this.call(pawn, pawn.pos, number, this.eachPlayer[turn].playerNumber);
+    //     pawn.filters.external.clear();
+    //     console.log("Reached ")
+    // }
+
+    // i = currentPosition of pawn
+    movePawn(pawn, i, number, playerNumber) {
+        if (number == 0) {
+            this.turn = (this.turn + 1) % 4;
+            return;
+        }
+        console.log(pawn, i, number, playerNumber);
+        if (i == -1) {
+            i = this.eachPlayer[playerNumber].start;
+            this.eachPlayer[playerNumber].availablePawns.push(pawn);
+            number = 0;
+        } else if (playerNumber == 1 && pawn.pos == 51 && number != 0) {
+            i = pawn.goto;
+        } else if ((i + 1) % 52 == pawn.entry + 1 && number != 0) {
+            i = pawn.goto;
+        } else if (number != 0) {
+            i = i + 1 % 52
+        }
+        number--;
+        this.tweens.add({
+            targets: pawn,
+            x: this.boardPawnPos[i].x,
+            y: this.boardPawnPos[i].y,
+            duration: 400,
+            ease: "Expo.inOut",
+            // ease: "Expo.easeOut",
+        })
+        pawn.pos = i;
+        if (!(number <= 0)) {
+            this.time.delayedCall(400, () => {
+                this.movePawn(pawn, pawn.pos, number, playerNumber);
+            }, null, this);
+        } else {
+            this.turn = (this.turn + 1) % 4;
+        }
+    }
+
+    levitate(pawn) {
+        const x = pawn.x || this.boardPawnPos[pawn.pos].x;
+        const y = pawn.y || this.boardPawnPos[pawn.pos].y;
+        let i = 0;
+        let d = true;
+        const positions = [{ y: y, scale: 0.2 }, { y: y - 3, scale: 0.21 }, { y: y - 6, scale: 0.22 }]
+        this.intervals.push(setInterval((pawnTest) => {
+            this.tweens.add({
+                targets: pawnTest,
+                y: positions[i].y,
+                scaleX: positions[i].scale,
+                scaleY: positions[i].scale,
+                duration: 180,
+            });
+            if (d) {
+                i++;
+            } else {
+                i--;
+            }
+            if (i > 2) {
+                d = false;
+                i = 2;
+            } else if (i < 0) {
+                d = true;
+                i = 0;
+            }
+        }, 180, pawn));
     }
 }

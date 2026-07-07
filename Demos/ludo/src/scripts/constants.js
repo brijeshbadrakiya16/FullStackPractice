@@ -59,6 +59,7 @@ export const boardPawnPos = [
     { pos: 51, x: 540, y: 1465 },
 ]
 
+
 export const modeTwo_1_Color = 'red';
 export const modeTwo_1_Entry = 51;
 export const modeTwo_1_Start = 1;
@@ -88,6 +89,7 @@ export const modeFour_1 = {
     start: 1,
     goto: 52,
     color: 'red',
+    colorNumber: 0xff0000,
     playerNumber: 1,
     homePositions: [
         { x: 288, y: 1320 },
@@ -102,6 +104,7 @@ export const modeFour_2 = {
     start: 14,
     goto: 58,
     color: 'green',
+    colorNumber: 0x00ff00,
     playerNumber: 2,
     homePositions: [
         { x: 150, y: 681 },
@@ -116,6 +119,7 @@ export const modeFour_3 = {
     start: 27,
     goto: 64,
     color: 'yellow',
+    colorNumber: 0xffff00,
     playerNumber: 3,
     homePositions: [
         { x: 792, y: 560 },
@@ -130,6 +134,7 @@ export const modeFour_4 = {
     start: 40,
     goto: 70,
     color: 'blue',
+    colorNumber: 0x0000ff,
     playerNumber: 4,
     homePositions: [
         { x: 931, y: 1199 },
