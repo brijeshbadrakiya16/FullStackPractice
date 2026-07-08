@@ -30,6 +30,9 @@ export class DiceButton extends GameObjects.Container {
         let diceTexture = ['dice1', 'dice2', 'dice3', 'dice4', 'dice5', 'dice6'];
         const diceNumbers = [6, 3, 2, 1, 4, 5];
         this.rolling = false;
+        this.wait = false;
+        this.prevTurn = 0;
+        this.turnCount = 0;
 
         const rollDice = (i, count, number) => {
             if (i == 0) {
@@ -48,16 +51,29 @@ export class DiceButton extends GameObjects.Container {
                 dice.setScale(1);
             } else {
                 dice.setTexture(`${number}`);
-                this.rolling = false;
-                scene.diceRolled(number);
+                // this.rolling = false;
+                scene.diceRolled(number, this);
             }
         }
 
         dice.on('pointerdown', () => {
-            if (!this.rolling && scene.turn == this.playerNumber - 1) {
+            if (!this.wait && scene.turn == this.playerNumber - 1) {
+                // !this.rolling
+                if (this.prevTurn !== scene.turn) {
+                    this.prevTurn = scene.turn
+                    this.turnCount = 0;
+                } else {
+                    this.turnCount++;
+                }
+                this.wait = true;
                 dice.setScale(0.85);
-                this.rolling = true;
-                rollDice(0, 0, math.RND.shuffle(diceNumbers)[math.RND.between(0, 5)]);
+                if (this.turnCount == 2) {
+                    rollDice(0, 0, math.RND.shuffle([5, 2, 1, 3, 4])[math.RND.between(0, 4)]);
+                } else {
+                    rollDice(0, 0, math.RND.shuffle(diceNumbers)[math.RND.between(0, 5)]);
+
+                }
+                // this.rolling = true;
             }
         });
         dice.on('pointerup', () => {

@@ -26,6 +26,8 @@ export class Game extends Scene {
         this.pawnTest = null;
 
         this.intervals = [];
+
+        this.intervalPawns = [];
     }
 
     init(data) {
@@ -64,8 +66,16 @@ export class Game extends Scene {
     create() {
         this.board = this.add.image(540, 960, 'board');
         this.board.setOrigin(0.5, 0.5).setScale(1.09);
-        this.pawnTest = new Pawn(this, 540, 1392, 'redPawn');
-        this.add.existing(this.pawnTest);
+
+        // this.pawnTest = new Pawn(this, 576, 960, 'redPawn');
+        // this.pawnTest = new Pawn(this, 592, 960, 'redPawn').setScale(0.15);
+        // this.pawnTest = new Pawn(this, 608, 960, 'redPawn').setScale(0.15);
+        // this.pawnTest = new Pawn(this, 624, 960, 'redPawn').setScale(0.15);
+
+        // this.pawnTest = new Pawn(this, 516 , 894, 'redPawn').setScale(0.15);
+        // this.pawnTest = new Pawn(this, 532 , 894, 'redPawn').setScale(0.15);
+        // this.pawnTest = new Pawn(this, 548 , 894, 'redPawn').setScale(0.15);
+        // this.pawnTest = new Pawn(this, 564 , 894, 'redPawn').setScale(0.15);
 
 
         if (this.mode == "Four") {
@@ -80,6 +90,7 @@ export class Game extends Scene {
                 playerData.goto = this.settingData[i].goto;
                 playerData.entry = this.settingData[i].entry;
                 playerData.availablePawns = [];
+                playerData.tilePositions = this.settingData[i].tilePositions;
 
                 for (let k = 0; k < 4; k++) {
                     const pawn = new Pawn(
@@ -88,6 +99,8 @@ export class Game extends Scene {
                         this.settingData[i].homePositions[k].y,
                         this.settingData[i].color + "Pawn",
                         this.settingData[i].colorNumber,
+                        playerData.playerNumber,
+                        k
                     )
                     playerData.pawns.push(pawn);
                 }
@@ -138,22 +151,35 @@ export class Game extends Scene {
         // this.levitate();
     }
 
-    diceRolled(number) {
+    diceRolled(number, ref) {
         console.log(number);
         if (number != 6 && this.eachPlayer[this.turn].availablePawns.length == 1) {
             const pawn = this.eachPlayer[this.turn].availablePawns[0];
-            this.movePawn(pawn, pawn.pos, number, this.turn);
+            this.movePawn(pawn, pawn.pos, number, this.turn, number, ref); 
         } else if (number == 6 && this.eachPlayer[this.turn].availablePawns.length >= 0) {
             this.eachPlayer[this.turn].pawns.forEach((pawn) => {
                 // pawn.filters.external.addGlow(pawn.colorNumber);
                 this.levitate(pawn);
                 pawn.on('pointerdown', () => {
-                    this.intervals.forEach(x=>clearInterval);
+                    this.intervals.forEach(x => clearInterval(x));
+                    this.intervalPawns.forEach(x => {
+                        // console.log(x,x.pos,this.boardPawnPos[x.pos]);
+                        if (x.pos != -1) {
+                            x.setX(this.boardPawnPos[x.pos].x);
+                            x.setY(this.boardPawnPos[x.pos].y);
+                        } else {
+                            x.setX(this.settingData[x.playerNumber - 1].homePositions[x.pawnNumber].x);
+                            x.setY(this.settingData[x.playerNumber - 1].homePositions[x.pawnNumber].y);
+                        }
+                        x.setScale(0.2, 0.2);
+                        // console.log(x);
+                    });
+                    this.intervalPawns = [];
                     this.eachPlayer[(this.turn + 4) % 4].pawns.forEach((pawn) => {
                         pawn.removeAllListeners('pointerdown');
                     })
                     // console.log(pawn,number,this.turn-1);
-                    this.movePawn(pawn, pawn.pos, number, (this.turn + 4) % 4);
+                    this.movePawn(pawn, pawn.pos, number, (this.turn + 4) % 4, number, ref);
                     console.log("Reached ")
                 });
                 // pawn.on('pointerdown',(pawn,number) => this.movePawn(pawn,number,this.turn), this);
@@ -163,19 +189,32 @@ export class Game extends Scene {
                 // pawn.filters.external.addGlow(pawn.colorNumber);
                 this.levitate(pawn);
                 pawn.on('pointerdown', () => {
-                    this.intervals.forEach(x=>clearInterval);
+                    this.intervals.forEach(x => clearInterval(x));
+                    this.intervalPawns.forEach(x => {
+                        // console.log(x,x.pos,this.boardPawnPos[x.pos]);
+                        if (x.pos != -1) {
+                            this.boardPawnPos[x.pos]?.x ?? x.setX(this.boardPawnPos[x.pos].x);
+                            this.boardPawnPos[x.pos]?.y ?? x.setY(this.boardPawnPos[x.pos].y);
+                        } else {
+                            x.setX(this.settingData[x.playerNumber - 1].homePositions[x.pawnNumber].x);
+                            x.setY(this.settingData[x.playerNumber - 1].homePositions[x.pawnNumber].y);
+                        }
+                        x.setScale(0.2, 0.2);
+                        // console.log(x);
+                    });
+                    this.intervalPawns = [];
                     this.eachPlayer[(this.turn + 4) % 4].pawns.forEach((pawn) => {
                         pawn.removeAllListeners('pointerdown');
                         // pawn.filters.external.clear();
                     })
                     // console.log(pawn,number,this.turn-1);
-                    this.movePawn(pawn, pawn.pos, number, (this.turn + 4) % 4);
+                    this.movePawn(pawn, pawn.pos, number, (this.turn + 4) % 4, number, ref);
                     console.log("Reached ")
                 });
                 // pawn.on('pointerdown',(pawn,number) => this.movePawn(pawn,number,this.turn), this);
             });
         } else {
-            this.movePawn(null, null, 0, 0);
+            this.movePawn(null, null, 0, 0, 0, ref);
         }
     }
 
@@ -189,12 +228,13 @@ export class Game extends Scene {
     // }
 
     // i = currentPosition of pawn
-    movePawn(pawn, i, number, playerNumber) {
+    movePawn(pawn, i, number, playerNumber, startNumber, ref) {
         if (number == 0) {
-            this.turn = (this.turn + 1) % 4;
+            startNumber != 6 ? this.turn = (this.turn + 1) % 4 : null;
+            ref.wait = false;
             return;
         }
-        console.log(pawn, i, number, playerNumber);
+        // console.log(pawn, i, number, playerNumber);
         if (i == -1) {
             i = this.eachPlayer[playerNumber].start;
             this.eachPlayer[playerNumber].availablePawns.push(pawn);
@@ -204,7 +244,7 @@ export class Game extends Scene {
         } else if ((i + 1) % 52 == pawn.entry + 1 && number != 0) {
             i = pawn.goto;
         } else if (number != 0) {
-            i = i + 1 % 52
+            i = (i + 1) % 52
         }
         number--;
         this.tweens.add({
@@ -214,18 +254,22 @@ export class Game extends Scene {
             duration: 400,
             ease: "Expo.inOut",
             // ease: "Expo.easeOut",
-        })
+        });
         pawn.pos = i;
         if (!(number <= 0)) {
             this.time.delayedCall(400, () => {
-                this.movePawn(pawn, pawn.pos, number, playerNumber);
+                this.movePawn(pawn, pawn.pos, number, playerNumber, startNumber, ref);
             }, null, this);
         } else {
-            this.turn = (this.turn + 1) % 4;
+            this.time.delayedCall(400, () => {
+                startNumber != 6 ? this.turn = (this.turn + 1) % 4 : null;
+                ref.wait = false
+            }, null, this);
         }
     }
 
     levitate(pawn) {
+        this.intervalPawns.push(pawn);
         const x = pawn.x || this.boardPawnPos[pawn.pos].x;
         const y = pawn.y || this.boardPawnPos[pawn.pos].y;
         let i = 0;

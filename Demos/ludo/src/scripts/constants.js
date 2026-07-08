@@ -57,6 +57,30 @@ export const boardPawnPos = [
     { pos: 49, x: 606, y: 1392 },
     { pos: 50, x: 606, y: 1465 },
     { pos: 51, x: 540, y: 1465 },
+    { pos: 52, x: 540, y: 1392, color: "red" },
+    { pos: 53, x: 540, y: 1318, color: "red" },
+    { pos: 54, x: 540, y: 1245, color: "red" },
+    { pos: 55, x: 540, y: 1171, color: "red" },
+    { pos: 56, x: 540, y: 1098, color: "red" },
+    { pos: 57, x: 516, y: 1025, color: "red", scale: 0.15 }, // !gap of 16px onwards
+    { pos: 58, x: 108, y: 960, color: "green" },
+    { pos: 59, x: 180, y: 960, color: "green" },
+    { pos: 60, x: 254, y: 960, color: "green" },
+    { pos: 61, x: 328, y: 960, color: "green" },
+    { pos: 62, x: 404, y: 960, color: "green" },
+    { pos: 63, x: 455, y: 960, color: "green", scale: 0.15 }, // !same 16px
+    { pos: 64, x: 540, y: 529, color: "yellow" },
+    { pos: 65, x: 540, y: 602, color: "yellow" },
+    { pos: 66, x: 540, y: 674, color: "yellow" },
+    { pos: 67, x: 540, y: 749, color: "yellow" },
+    { pos: 68, x: 540, y: 824, color: "yellow" },
+    { pos: 69, x: 516, y: 894, color: "yellow", scale: 0.15 }, // ! same 16px
+    { pos: 70, x: 972, y: 960, color: "blue" },
+    { pos: 71, x: 900, y: 960, color: "blue" },
+    { pos: 72, x: 825, y: 960, color: "blue" },
+    { pos: 73, x: 751, y: 960, color: "blue" },
+    { pos: 74, x: 678, y: 960, color: "blue" },
+    { pos: 75, x: 576, y: 960, color: "blue", scale: 0.15}, // ! Same 16px
 ]
 
 
@@ -96,7 +120,8 @@ export const modeFour_1 = {
         { x: 288, y: 1199 },
         { x: 150, y: 1320 },
         { x: 150, y: 1199 },
-    ]
+    ],
+    tilePositions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57],
 }
 
 export const modeFour_2 = {
@@ -111,7 +136,8 @@ export const modeFour_2 = {
         { x: 288, y: 681 },
         { x: 288, y: 560 },
         { x: 150, y: 560 },
-    ]
+    ],
+    tilePositions: [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 58, 59, 60, 61, 62, 63],
 }
 
 export const modeFour_3 = {
@@ -126,7 +152,8 @@ export const modeFour_3 = {
         { x: 792, y: 681 },
         { x: 931, y: 681 },
         { x: 931, y: 560 },
-    ]
+    ],
+    tilePositions: [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 64, 65, 66, 67, 68, 69],
 }
 
 export const modeFour_4 = {
@@ -141,7 +168,8 @@ export const modeFour_4 = {
         { x: 792, y: 1199 },
         { x: 792, y: 1320 },
         { x: 931, y: 1320 },
-    ]
+    ],
+    tilePositions: [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 70, 71, 72, 73, 74, 75],
 }
 
 export const diceButtonPositions = [
